@@ -40,7 +40,7 @@ namespace AspNetBox
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AspnetBox", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AspNetBox", Version = "v1" });
 
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -63,7 +63,7 @@ namespace AspNetBox
             app.UseMiddleware<RequestLoggingMiddleware>();
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AspnetBox v1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AspNetBox v1"));
 
             app.UseDeveloperExceptionPage();
 

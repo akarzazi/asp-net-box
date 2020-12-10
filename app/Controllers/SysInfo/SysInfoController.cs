@@ -47,7 +47,7 @@ namespace AspNetBox.Controllers
         {
             _logger.LogInformation("Getting system info");
 
-            var dumpInfo = $"More at {Url.AbsoluteContent(Request, "~/Swagger")}\n" +
+            var dumpInfo = $"More at {Url.AbsoluteContent(Request, "~/swagger")}\n" +
                  DumpRequestInfo()
                  +
                  DumpEnvVars()
