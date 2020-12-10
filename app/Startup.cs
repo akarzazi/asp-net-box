@@ -62,19 +62,12 @@ namespace AspNetBox
             app.UseForwardedHeaders();
             app.UseMiddleware<RequestLoggingMiddleware>();
 
-            if (env.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AspnetBox v1"));
-            }
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AspnetBox v1"));
 
             app.UseDeveloperExceptionPage();
 
             app.UseRouting();
-
-            //app.UseHttpsRedirection();
-
-            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
