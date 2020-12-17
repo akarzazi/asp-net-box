@@ -25,6 +25,7 @@
     <NoWarn>$(NoWarn);1591</NoWarn>
     <AssemblyName>AspNetBox</AssemblyName>
     <RootNamespace>AspNetBox</RootNamespace>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>

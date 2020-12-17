@@ -19,7 +19,7 @@ namespace AspNetBox
 
             try
             {
-                logger.Debug("init main");
+                logger.Info("Application is starting");
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception exception)

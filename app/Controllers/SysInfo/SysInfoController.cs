@@ -19,7 +19,7 @@ namespace AspNetBox.Controllers
     [Route("/")]
     public class SysInfoController : ControllerBase
     {
-        private readonly ILogger<SysInfoController> _logger;
+
         private ISerializer _serializer;
         private JsonSerializerOptions _jsonOpts;
 
@@ -60,7 +60,8 @@ namespace AspNetBox.Controllers
                  +
                  GetTlsInfo()
                  +
-                 typeof(SysInfoController).Assembly.FullName;
+                 typeof(SysInfoController).Assembly.FullName
+                 + "\n";
 
             _logger.LogInformation("[OK] System info");
             return dumpInfo;
