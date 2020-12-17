@@ -23,9 +23,8 @@ namespace AspNetBox.Controllers
         private ISerializer _serializer;
         private JsonSerializerOptions _jsonOpts;
 
-        public SysInfoController(ILogger<SysInfoController> logger)
+        public SysInfoController()
         {
-            _logger = logger;
             _serializer = new SerializerBuilder()
                             .DisableAliases()
                             .Build();
@@ -45,8 +44,6 @@ namespace AspNetBox.Controllers
         [HttpGet]
         public string Get()
         {
-            _logger.LogInformation("Getting system info");
-
             var dumpInfo = $"More at {Url.AbsoluteContent(Request, "~/swagger")}\n" +
                  DumpRequestInfo()
                  +
@@ -63,7 +60,6 @@ namespace AspNetBox.Controllers
                  typeof(SysInfoController).Assembly.FullName
                  + "\n";
 
-            _logger.LogInformation("[OK] System info");
             return dumpInfo;
         }
 
