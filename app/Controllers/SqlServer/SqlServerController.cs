@@ -23,7 +23,7 @@ namespace AspNetBox.Controllers
         /// <param name="connectionString">The connection string</param>
         /// <param name="sql">SQL query</param>
         /// <returns>Returns the query results</returns>
-        [HttpGet("/System")]
+        [HttpGet("System")]
         public string ExecuteQuerySystem(string connectionString= DEFAULT_CNX_STR, string sql = SQL)
         {
             using (var conn = new System.Data.SqlClient.SqlConnection(connectionString))
@@ -43,7 +43,7 @@ namespace AspNetBox.Controllers
         /// <param name="connectionString">The connection string</param>
         /// <param name="sql">SQL query</param>
         /// <returns>Returns the query results</returns>
-        [HttpGet("/Microsoft")]
+        [HttpGet("Microsoft")]
         public string ExecuteQueryMicrosoft(string connectionString = DEFAULT_CNX_STR, string sql = SQL)
         {
             using (var conn = new Microsoft.Data.SqlClient.SqlConnection(connectionString))

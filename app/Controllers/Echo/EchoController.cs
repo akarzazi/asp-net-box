@@ -9,7 +9,6 @@ namespace AspNetBox.Controllers
 {
     [Produces("text/plain")]
     [Route("[controller]")]
-    //  [ApiController]
     public class EchoController : ControllerBase
     {
         /// <summary>

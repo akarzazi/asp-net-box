@@ -19,7 +19,6 @@ namespace AspNetBox.Controllers
     [Route("/")]
     public class SysInfoController : ControllerBase
     {
-
         private ISerializer _serializer;
         private JsonSerializerOptions _jsonOpts;
 
