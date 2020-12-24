@@ -1,6 +1,16 @@
 # ASP.NET Box
 A small aspnet core application for troubleshooting
 
+- [Features routes](#features-routes)
+  * [Routes](#routes)
+  * [Swagger interface](#swagger-interface)
+- [Install](#install)
+  * [Docker](#docker)
+  * [Docker-Compose](#docker-compose)
+  * [Kubernetes / K8s](#kubernetes---k8s)
+  * [Kubernetes / K8s using HELM](#kubernetes---k8s-using-helm)
+  * [Notes on the HTTPS support](#notes-on-the-https-support)
+
 # Features routes
 
 ## Routes
@@ -72,7 +82,7 @@ Thows an unhandled exception
 ​/WaitFor`
 Responds after the specified delay.
 
-## Swagger
+## Swagger interface
 
 To ease interaction with the APIs, a Swagger / OpenApi interface is included for convenience. 
 
@@ -84,6 +94,9 @@ To ease interaction with the APIs, a Swagger / OpenApi interface is included for
 ## Docker
 
 The app is available as docker image at `akarzazi/aspnetbox`
+
+https://hub.docker.com/r/akarzazi/aspnetbox
+
 
 ## Docker-Compose
 
@@ -131,7 +144,7 @@ kubectl --namespace default port-forward aspnetbox 8002:80
 
 Then navigate to `localhost:8002`
 
-### Notes on the HTTPS support
+## Notes on the HTTPS support
 
 A default self signed PFX certificate is provided as base64 in the scripts.
 Feel free to replace it with your own PFX.
