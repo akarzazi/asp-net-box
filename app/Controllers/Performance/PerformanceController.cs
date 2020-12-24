@@ -68,9 +68,9 @@ namespace AspNetBox.Controllers
         }
 
         /// <summary>
-        /// Benchmarks CPU compute speed by retreiving prime numbers
+        /// Benchmarks CPU compute speed by retrieving prime numbers
         /// </summary>
-        /// <param name="primeCount">The nth primes to be retreived</param>
+        /// <param name="primeCount">The nth primes to be retrieved</param>
         /// <param name="threads">The number of threads to be used</param>
         /// <returns>Benchmark results</returns>
         [HttpGet("Cpu")]
