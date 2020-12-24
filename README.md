@@ -7,8 +7,8 @@ A small aspnet core application for troubleshooting
 - [Install](#install)
   * [Docker](#docker)
   * [Docker-Compose](#docker-compose)
-  * [Kubernetes / K8s](#kubernetes---k8s)
-  * [Kubernetes / K8s using HELM](#kubernetes---k8s-using-helm)
+  * [Kubernetes](#kubernetes)
+  * [Kubernetes using HELM](#kubernetes-using-helm)
   * [Notes on the HTTPS support](#notes-on-the-https-support)
 
 # Features routes
@@ -110,7 +110,7 @@ With the https support:
 docker-compose -f .\aspnetbox-with-https.yml up
 ```
 
-## Kubernetes / K8s
+## Kubernetes
 
 ```shell
 kubectl apply -f .\k8s\as-pod.yaml
@@ -128,7 +128,7 @@ From github sources:
 kubectl apply -f https://raw.githubusercontent.com/akarzazi/aspnetbox/main/k8s/as-pod.yaml
 ```
 
-## Kubernetes / K8s using HELM
+## Kubernetes using HELM
 
 ```shell
 helm install myaspnetbox .\helm -n myns --create-namespace
