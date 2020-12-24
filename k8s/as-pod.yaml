@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aspnetbox
+  labels:
+    app: aspnetbox
+spec:
+  enableServiceLinks: false
+  containers:
+  - name: aspnetbox
+    image: akarzazi/aspnetbox

@@ -13,7 +13,7 @@ namespace AspNetBox.Controllers
     public class PerformanceController : ControllerBase
     {
         /// <summary>
-        /// Allocates a temporary memory with bytes
+        /// Allocates a temporary memory with random bytes
         /// </summary>
         /// <param name="sizeMb">Memory allocation size</param>
         /// <param name="secondsBeforeFree">Seconds before releasing the allocated memory</param>

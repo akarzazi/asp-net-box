@@ -1,0 +1,15 @@
+version: '3'
+services:
+  webapp:
+    image: akarzazi/aspnetbox:1.1.0
+    ports:
+     - "8080:80"
+     - "8443:443"
+    volumes:
+      - type: bind
+        source: ../ressources/dev-cert/localhost.pfx
+        target: /etc/ssl/certs/localhost.pfx
+    environment:
+       ASPNETCORE_URLS: "https://+;http://+"
+       ASPNETCORE_Kestrel__Certificates__Default__Password: mypassword
+       ASPNETCORE_Kestrel__Certificates__Default__Path: /etc/ssl/certs/localhost.pfx

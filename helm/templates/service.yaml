@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "aspnetbox.fullname" . }}
+  labels:
+    {{- include "aspnetbox.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.httpPort }}
+      name: http
+      targetPort: http
+      protocol: TCP
+    - port: {{ .Values.service.httpsPort }}
+      name: https
+      targetPort: https
+      protocol: TCP
+  selector:
+    {{- include "aspnetbox.selectorLabels" . | nindent 4 }}

@@ -1,0 +1,6 @@
+version: '3'
+services:
+  webapp:
+    image: akarzazi/aspnetbox
+    ports:
+     - "8080:80"

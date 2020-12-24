@@ -1,0 +1,113 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "aspnetbox.fullname" . }}
+  labels:
+    {{- include "aspnetbox.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "aspnetbox.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "aspnetbox.selectorLabels" . | nindent 8 }}
+    spec:
+      enableServiceLinks: false
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "aspnetbox.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+            - name: https
+              containerPort: 443
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /?liveness
+              port: http
+            initialDelaySeconds: 20  
+            periodSeconds: 600
+          readinessProbe:
+            httpGet:
+              path: /?readiness
+              port: http
+            initialDelaySeconds: 20  
+            periodSeconds: 60  
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.https.enabled }}
+          volumeMounts:
+            - name: {{ .Release.Name }}-cert-secret-volume
+              readOnly: true
+              mountPath: {{dir .Values.https.certLocation }}   
+          {{- end }}      
+          env:
+            {{- if .Values.https.enabled }}
+            - name: ASPNETCORE_URLS
+              value: "https://+;http://+"
+            - name: ASPNETCORE_Kestrel__Certificates__Default__Password
+              value: {{ .Values.https.certPassword }}
+            - name: ASPNETCORE_Kestrel__Certificates__Default__Path
+              value: {{ .Values.https.certLocation }}
+            {{- end }}
+            {{- toYaml .Values.env | nindent 12 }}
+            - name: MY_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MY_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: MY_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: MY_POD_SERVICE_ACCOUNT
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.serviceAccountName
+     
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+      {{- if .Values.https.enabled }}
+      volumes:
+        - name: {{ .Release.Name }}-cert-secret-volume
+          secret:
+            secretName: {{ .Release.Name }}-cert-secret
+      {{- end }}      
