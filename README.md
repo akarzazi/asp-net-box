@@ -4,6 +4,7 @@ A small aspnet core application for troubleshooting
 - [Features routes](#features-routes)
   * [Routes](#routes)
   * [Swagger interface](#swagger-interface)
+  * [WebSocket](#websocket)
 - [Install](#install)
   * [Docker](#docker)
   * [Docker-Compose](#docker-compose)
