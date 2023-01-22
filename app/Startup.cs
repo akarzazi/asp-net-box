@@ -59,6 +59,14 @@ namespace AspNetBox
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // <snippet_UseWebSockets>
+            var webSocketOptions = new WebSocketOptions
+            {
+                KeepAliveInterval = TimeSpan.FromMinutes(2)
+            };
+
+            app.UseWebSockets(webSocketOptions);
+
             app.UseForwardedHeaders();
             app.UseMiddleware<RequestLoggingMiddleware>();
 
@@ -68,6 +76,9 @@ namespace AspNetBox
             app.UseDeveloperExceptionPage();
 
             app.UseRouting();
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

@@ -89,6 +89,6 @@ namespace AspNetBox
             return this;
         }
 
-        public static Func<MyLogEvent, Exception, string> Formatter { get; } = (l, e) => l.Message;
+        public static Func<MyLogEvent, Exception?, string> Formatter { get; } = (l, e) => l.Message;
     }
 }
