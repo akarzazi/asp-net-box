@@ -110,6 +110,9 @@ The app is available as docker image at `akarzazi/aspnetbox`
 
 https://hub.docker.com/r/akarzazi/aspnetbox
 
+```shell
+docker run  --publish 8001:80 akarzazi/aspnetbox
+```
 
 ## Docker-Compose
 
