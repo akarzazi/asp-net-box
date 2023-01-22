@@ -88,6 +88,18 @@ To ease interaction with the APIs, a Swagger / OpenApi interface is included for
 
 ![Swagger](resources/docs/swagger_preview.png?raw=true "Swagger")
 
+## WebSocket
+
+WebSocket playground
+
+`​/websocket-echo.html`
+
+![Swagger](resources/docs/websocket_preview.png?raw=true "Swagger")
+
+Websocket echo endpoint
+
+`GET
+​/ws`
 
 # Install
 
